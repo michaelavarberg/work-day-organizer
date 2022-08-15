@@ -69,8 +69,14 @@ textarea {
 }
 
 .saveBtn i:hover {
-  font-size: 50px;
+  font-size: 30px;
   transition: all 0.3s ease-in-out;
   color: black;
   cursor: pointer;
+}
+
+#message {
+  display: none;
+  margin: 3px;
+  text-align: center;
 }

@@ -29,6 +29,7 @@ var timeBlocksList = $("#time-blocks").children();
 var currentHour = today.getHours();
 var timeBlocksSection = $("#time-blocks");
 var savedEvents = JSON.parse(localStorage.getItem("saved-events"));
+var messageArea = document.querySelector("#message");
 
 if (savedEvents === null) {
   savedEvents = ["", "", "", "", "", "", "", "", ""];
@@ -80,6 +81,11 @@ function nth(d) {
   }
 }
 
+function showMessage() {
+  messageArea.textContent = "Event successfully saved to local storage.✅";
+  messageArea.style.display = "block";
+  setTimeout(hideMessage, 2000);
+}
 timeBlocksSection.on("click", ".fas", function (event) {
   var index = $(event.target).parent().parent().parent().attr("id");
   index = parseInt(index);
@@ -87,12 +93,11 @@ timeBlocksSection.on("click", ".fas", function (event) {
   var item = $(event.target).parent().prev().val();
   savedEvents.splice(index, 1, item);
   storeSchedule();
+  showMessage();
 });
 
-// console.log(JSON.parse("saved-events"));
-//Write code to take input from any text area, record its position, push it to an array of objects
-//Write code to save array to local storage
-//Write code to render events from local storage and print to screen on load: helpful
-// To write text to any of the time blocks
-// timeBlocksArray.children().eq(0).children().eq(1).text("Hello");
+function hideMessage() {
+  messageArea.style.display = "none";
+}
+
 console.log(savedEvents);
